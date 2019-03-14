@@ -16,5 +16,6 @@ namespace TourismWorld.Models
     {
         public int id { get; set; }
         public string country_name { get; set; }
+        public string img_src { get; set; }
     }
 }

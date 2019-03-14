@@ -6,9 +6,9 @@
 <div class="conteiner">
     <form class="left">
         <div>
-            <h3 style="text-align: center;">Поиск отеля</h3>
+            <h3 style="text-align: center;">Hotel search</h3>
             <div>
-                <h5>Страна</h5>
+                <h5>Country</h5>
                 <select name="country">
                     <option>
                         None
@@ -24,7 +24,7 @@
                 </select>
             </div>
             <div>
-                <h5>Город</h5>
+                <h5>City</h5>
                 <select name="city">
                     <option>
                         <div style="text-align: center;">
@@ -34,7 +34,7 @@
                 </select>
             </div>
             <div>
-                <h5>Звезды</h5>
+                <h5>Stars</h5>
                 <select name="star">
                     <option>
                         None
@@ -50,7 +50,7 @@
                 </select>
             </div>
         </div>
-        <button type="submit">Найти</button>
+        <button type="submit">Find</button>
     </form>
     <div class="right">
         <ul>
@@ -58,35 +58,40 @@
                 int i = 0;
                 foreach (var src in ViewBag.Hotels)
                 {
+                    i++;
+                    if (i >= 5)
+                    {
+                        continue;
+                    }
                     <li class="hotels">
                         <form>
                             <a href="/Home/About/@src.id">
                                 <img src="~/Content/img/Hotels/@src.img_src" class="imghoteks" />
                             </a>
-                            <div style="background-color:  red; width: 100%;">
+                            <div style=" width: 100%;">
                                 @src.hotel_name
                             </div>
-                            <div style="background-color:  green; width: 100%;">
-                                @src.id_cities
+                            <hr />
+                            <div style=" width: 100%;">
+                                <div style="float: left;">
+                                    @src.country_name, @src.cities_name
+                                </div>
+                                <img src="~/Content/img/countries/@src.cimg_src" style="height:24px; " />
                             </div>
-                            <div style="background-color:  blue; width: 100%;">
-                                @src.rank
+                            <hr />
+                            <div style="width: 100%;">
+                                Stars: @src.rank
                             </div>
                             <input type="submit" name="order" value="Order" class="glavknop">
                         </form>
                     </li>
-                    i++;
-                    if (i == 4)
-                    {
-                        break;
-                    }
                 }
             }
         </ul>
         <div style="text-align: center;">
             <ul style=" padding: 0;">
                 @{
-                    for (int k = 1; k < 4; k++)
+                    for (int k = 1; k <= Math.Ceiling((double)i / 4); k++)
                     {
                         <li class="pages"><a href="index.html">@k</a></li>
                     }
