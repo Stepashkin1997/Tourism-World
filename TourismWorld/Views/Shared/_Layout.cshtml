@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Tourism World</title>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    <link href="~/Content/Styles.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="~/destination.png" />
+</head>
+<body>
+    <div class="header">
+        <div id="title">
+            <a href="index.html">
+                <img src="~/Content/img/TourismWorld.png" class="imgtitel"/>
+            </a>
+        </div>
+        <ul style=" margin: 0; height: 100%;">
+            <li class="top">туристам</li>
+            <li class="top">страны</li>
+            <li class="top">где купить</li>
+            <li class="top">о компании</li>
+        </ul>
+        <form id="search">
+            <input type="text" name="search" placeholder="Поиск по сайту" class="searchtext">
+            <input type="image" src="~/Content/img/Search.png" class="find">
+        </form>
+    </div>
+    <div style="position: relative; top: 45px;">
+        @RenderBody()
+        <footer class="bottom">
+            <div style=" top: 20px; bottom: 20px; position: relative; margin-left: 10px;">
+                © 2019 Никита Степашкин, по всем вопросам пишите по адресу 33stepashkin33@gmail.com
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
