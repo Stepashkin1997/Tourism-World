@@ -7,7 +7,7 @@ body{
 	float:left;
 	position: relative;
 	border-radius: 3%;
-	margin-top: 5px;
+	margin-top: 30px;
 	margin-left: 5px;
 }
 .right{
@@ -120,12 +120,13 @@ select{
 	border-style: none;
 	outline: none;
 }
-.glavknop{
-	width: 100%; 
-	padding: 0;
-	height: 20px;
-	outline: none;
-	background-color: rgba(205, 214, 219);
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
+.glavknop {
+    width: 100%;
+    padding: 0;
+    height: 30px;
+    outline: none;
+    border-style: none ;
+    background-color: rgba(205, 214, 219);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }

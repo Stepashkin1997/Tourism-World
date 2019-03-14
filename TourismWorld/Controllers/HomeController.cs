@@ -18,5 +18,11 @@ namespace TourismWorld.Controllers
             ViewBag.Country = Contries;
             return View();
         }
+
+        public ActionResult About(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

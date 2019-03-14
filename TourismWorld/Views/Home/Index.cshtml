@@ -59,21 +59,21 @@
                 foreach (var src in ViewBag.Hotels)
                 {
                     <li class="hotels">
-                        <img src="~/Content/img/Hotels/@src.img_src" class="imghoteks" />
-                        <div style="background-color:  red; width: 100%;">
-                            @src.hotel_name
-                        </div>
-                        <div style="background-color:  green; width: 100%;">
-                            @src.id_cities
-                        </div>
-                        <div style="background-color:  blue; width: 100%;">
-                            @src.rank
-                        </div>
-                        <div style="background-color: rgba(205, 214, 219); width: 100%;">
-                            <form style="padding: 0; height: 20px;">
-                                <input type="submit" name="order" value="Order" class="glavknop">
-                            </form>
-                        </div>
+                        <form>
+                            <a href="/Home/About/@src.id">
+                                <img src="~/Content/img/Hotels/@src.img_src" class="imghoteks" />
+                            </a>
+                            <div style="background-color:  red; width: 100%;">
+                                @src.hotel_name
+                            </div>
+                            <div style="background-color:  green; width: 100%;">
+                                @src.id_cities
+                            </div>
+                            <div style="background-color:  blue; width: 100%;">
+                                @src.rank
+                            </div>
+                            <input type="submit" name="order" value="Order" class="glavknop">
+                        </form>
                     </li>
                     i++;
                     if (i == 4)
