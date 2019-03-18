@@ -10,9 +10,6 @@
             <div>
                 <h5>Country</h5>
                 <select name="country">
-                    <option>
-                        None
-                    </option>
                     @{
                         foreach (var name in ViewBag.Country)
                         {
@@ -27,18 +24,12 @@
                 <h5>City</h5>
                 <select name="city">
                     <option>
-                        <div style="text-align: center;">
-                            None
-                        </div>
                     </option>
                 </select>
             </div>
             <div>
                 <h5>Stars</h5>
                 <select name="star">
-                    <option>
-                        None
-                    </option>
                     @{
                         for (int j = 0; j < 6; j++)
                         {
@@ -59,7 +50,7 @@
                 foreach (var src in ViewBag.Hotels)
                 {
                     i++;
-                    if (i >= 5)
+                    if (i > @ViewBag.count*4 || i<=@ViewBag.count * 4-4)
                     {
                         continue;
                     }
@@ -68,18 +59,18 @@
                             <a href="/Home/About/@src.id">
                                 <img src="~/Content/img/Hotels/@src.img_src" class="imghoteks" />
                             </a>
-                            <div style=" width: 100%;">
+                            <div class="infospis">
                                 @src.hotel_name
                             </div>
                             <hr />
-                            <div style=" width: 100%;">
-                                <div style="float: left;">
+                            <div class="infospis">
+                                <div style="float: left; height:100%;">
                                     @src.country_name, @src.cities_name
                                 </div>
-                                <img src="~/Content/img/countries/@src.cimg_src" style="height:24px; " />
+                                <img src="~/Content/img/countries/@src.cimg_src" style="height:100%; " />
                             </div>
                             <hr />
-                            <div style="width: 100%;">
+                            <div class="infospis">
                                 Stars: @src.rank
                             </div>
                             <input type="submit" name="order" value="Order" class="glavknop">
@@ -93,7 +84,13 @@
                 @{
                     for (int k = 1; k <= Math.Ceiling((double)i / 4); k++)
                     {
-                        <li class="pages"><a href="index.html">@k</a></li>
+                        if (@ViewBag.count == k)
+                        {
+                            <li class="pages"><a href="/Home/Index/@k" style="color: red;">@k</a></li>
+                        }
+                        else { 
+                        <li class="pages"><a href="/Home/Index/@k">@k</a></li>
+                        }
                     }
                 }
             </ul>
