@@ -20,6 +20,10 @@ namespace TourismWorld.Controllers
 
             return View();
         }
+        public ActionResult Aboutcompany()
+        {
+            return View();
+        }
 
         public ActionResult About(int id = 3)
         {
@@ -27,7 +31,7 @@ namespace TourismWorld.Controllers
             return View();
         }
 
-        public ActionResult Wherebuy(int id = 3)
+        public ActionResult Wherebuy()
         {
             return View();
         }

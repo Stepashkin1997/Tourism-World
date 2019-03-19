@@ -2,9 +2,14 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Wherebuy</h2>
-<div style="text-align:center;position: relative; width: 100%;">
-    <div id="map" style="width: 500px; height: 300px;  margin-left: auto;
-    margin-right: auto;"></div>
+@section Scripts
+{
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<a95c4824-a27a-4f34-b884-d081b03029d9>&lang=ru_RU" type="text/javascript">
+    </script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/script.js"></script>
+}
+<h2>Where buy</h2>
+<div style="text-align:center;position: relative; width: 100%; ">
+    <div id="map" style="width: 600px; height: 400px;  margin-left: auto; margin-right: auto;"></div>
 </div>

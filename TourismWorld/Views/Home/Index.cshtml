@@ -41,10 +41,10 @@
                 </select>
             </div>
         </div>
-        <button type="submit">Find</button>
+        <input type="submit" name="Find" value="Find" class="glavknop">
     </form>
     <div class="right">
-        <ul>
+        <ul style="margin:0;">
             @{
                 int i = 0;
                 foreach (var src in ViewBag.Hotels)
@@ -62,14 +62,12 @@
                             <div class="infospis">
                                 @src.hotel_name
                             </div>
-                            <hr />
                             <div class="infospis">
                                 <div style="float: left; height:100%;">
                                     @src.country_name, @src.cities_name
                                 </div>
                                 <img src="~/Content/img/countries/@src.cimg_src" style="height:100%; " />
                             </div>
-                            <hr />
                             <div class="infospis">
                                 Stars: @src.rank
                             </div>
@@ -86,10 +84,10 @@
                     {
                         if (@ViewBag.count == k)
                         {
-                            <li class="pages"><a href="/Home/Index/@k" style="color: red;">@k</a></li>
+                            <li class="pages"><a href="/Home/Index/@k" style="color: red;" class="pagesli">@k</a></li>
                         }
                         else { 
-                        <li class="pages"><a href="/Home/Index/@k">@k</a></li>
+                        <li class="pages"><a href="/Home/Index/@k" class="pagesli">@k</a></li>
                         }
                     }
                 }

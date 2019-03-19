@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tourism World</title>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=<a95c4824-a27a-4f34-b884-d081b03029d9>&lang=ru_RU" type="text/javascript">
-    </script>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/script.js"></script>
+    @RenderSection("Scripts", false)
     <link href="~/Content/Styles.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="~/destination.png" />
 </head>
@@ -14,26 +11,24 @@
     <div class="header">
         <div id="title">
             <a href="/Home/Index">
-                <img src="~/Content/img/TourismWorld.png" class="imgtitel" />
+                <img src="~/Content/img/TourismWorld.png" class="imgtitle" />
             </a>
         </div>
         <ul style=" margin: 0; height: 100%;">
-            <li class="top">
-                For tourists
-            </li>
-            <li class="top">Counties</li>
+            <li class="top"><a href="/Home/Index">For tourists</a></li>
+            <li class="top"><a href="/Home/Index">Countries</a></li>
             <li class="top"><a href="/Home/Wherebuy">Where buy</a></li>
-            <li class="top">About company</li>
+            <li class="top"><a href="/Home/Aboutcompany">About company</a></li>
         </ul>
         <form id="search">
             <input type="text" name="search" placeholder="Поиск по сайту" class="searchtext">
             <input type="image" src="~/Content/img/Search.png" class="find">
         </form>
     </div>
-    <div style="position: relative; top: 45px;">
+    <div style="position: relative; margin-top: 65px; min-height:100%; ">
         @RenderBody()
         <footer class="bottom">
-            <div style=" top: 20px; bottom: 20px; position: relative; margin-left: 10px;">
+            <div style=" top: 20px; bottom: 20px; position: relative; margin-left: 10px; font-weight: bold; color:white;">
                 © 2019 Nikita Stepashkin, write to all questions at 33stepashkin33@gmail.com
             </div>
         </footer>
