@@ -35,5 +35,9 @@ namespace TourismWorld.Controllers
         {
             return View();
         }
+        public ActionResult Fortourists()
+        {
+            return View();
+        }
     }
 }
