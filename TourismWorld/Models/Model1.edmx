@@ -30,6 +30,8 @@
           <Property Name="id_cities" Type="int" Nullable="false" />
           <Property Name="img_src" Type="varchar" MaxLength="100" />
           <Property Name="rank" Type="int" />
+          <Property Name="price" Type="int" />
+          <Property Name="about" Type="text" />
         </EntityType>
         <EntityContainer Name="Хранилище TourismModelContainer">
           <EntitySet Name="cities" EntityType="Self.cities" Schema="tourismweb" store:Type="Tables" />
@@ -65,6 +67,8 @@
           <Property Name="id_cities" Type="Int32" Nullable="false" />
           <Property Name="img_src" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="rank" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="about" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="tourismwebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cities" EntityType="Self.city" />
@@ -98,6 +102,8 @@
           <EntitySetMapping Name="hotels">
             <EntityTypeMapping TypeName="TourismModel.hotel">
               <MappingFragment StoreEntitySet="hotels">
+                <ScalarProperty Name="about" ColumnName="about" />
+                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="hotel_name" ColumnName="hotel_name" />
                 <ScalarProperty Name="id_cities" ColumnName="id_cities" />
