@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using TourismWorld.Models;
 
 namespace TourismWorld.Controllers
@@ -34,6 +35,21 @@ namespace TourismWorld.Controllers
             ViewBag.Hotels = a.FirstOrDefault();
             ViewBag.id = id;
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult CitySearch(string country)
+        {
+            var city = entities.cities.Join(entities.countries, a => a.id_country, b => b.id, (a, b) => new
+            {
+                Name = a.cities_name,
+                country = b.country_name
+            }).Where(a => a.country.Contains(country));
+            //if (city.Count() <= 0)
+            //{
+            //    return Json(none);
+            //}
+            return Json(city);
         }
 
         public ActionResult Wherebuy()

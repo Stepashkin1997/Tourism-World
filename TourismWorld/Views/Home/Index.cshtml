@@ -2,18 +2,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/ajax.js"></script>
+}
 
 <div class="conteiner">
     <form class="left">
         <div>
             <h3 style="text-align: center;">Hotel search</h3>
+
             <div>
                 <h5>Country</h5>
-                <select name="country">
+                <select name="country" id="country">
                     @{
                         foreach (var name in ViewBag.Country)
                         {
-                            <option>
+                            <option value="@name.country_name">
                                 @name.country_name
                             </option>
                         }
@@ -22,11 +29,11 @@
             </div>
             <div>
                 <h5>City</h5>
-                <select name="city">
-                    <option>
-                    </option>
+                <select name="city" id="city">
+                   
                 </select>
             </div>
+
             <div>
                 <h5>Stars</h5>
                 <select name="star">
@@ -50,7 +57,7 @@
                 foreach (var src in ViewBag.Hotels)
                 {
                     i++;
-                    if (i > @ViewBag.count*4 || i<=@ViewBag.count * 4-4)
+                    if (i > @ViewBag.count * 4 || i <= @ViewBag.count * 4 - 4)
                     {
                         continue;
                     }
@@ -86,8 +93,9 @@
                         {
                             <li class="pages"><a href="/Home/Index/@k" style="color: red;" class="pagesli">@k</a></li>
                         }
-                        else { 
-                        <li class="pages"><a href="/Home/Index/@k" class="pagesli">@k</a></li>
+                        else
+                        {
+                            <li class="pages"><a href="/Home/Index/@k" class="pagesli">@k</a></li>
                         }
                     }
                 }
