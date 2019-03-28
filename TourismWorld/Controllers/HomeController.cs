@@ -17,7 +17,6 @@ namespace TourismWorld.Controllers
                              join city in entities.cities on hotels.id_cities equals city.id
                              join country in entities.countries on city.id_country equals country.id
                              select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src };
-
             return View();
         }
         public ActionResult Aboutcompany()
@@ -25,8 +24,14 @@ namespace TourismWorld.Controllers
             return View();
         }
 
-        public ActionResult About(int id = 3)
+        public ActionResult About(int id)
         {
+          var a = from hotels in entities.hotels
+                    join city in entities.cities on hotels.id_cities equals city.id
+                    where hotels.id == id
+                    join country in entities.countries on city.id_country equals country.id
+                    select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src };
+            ViewBag.Hotels = a.FirstOrDefault();
             ViewBag.id = id;
             return View();
         }
