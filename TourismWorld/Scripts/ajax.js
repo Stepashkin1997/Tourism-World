@@ -2,21 +2,15 @@
     $('#country').change(function () {
         var a = $("select#country").val();
         $.ajax({
-            url: "/Home/CitySearch/", //url страницы (action_ajax_form.php)
+            url: "/Home/CitySearch/", //url страницы 
             type: "POST", //метод отправки
             dataType: "text", //формат данных
-            data: "country="+a,  // Сеарилизуем объект
-            success: onAjaxSuccess
+            data: "country="+a,  
+            success: onAjaxSuccess,
+            error: function (response) { // Данные не отправлены
+                alert("Server is fall");;
+            }
         });
-        //var b = $("select#country").val();
-        //$.post(
-        //    a,
-        //    {
-        //        country: b,
-        //    },
-        //    onAjaxSuccess
-        //);
-
     });
 });
 

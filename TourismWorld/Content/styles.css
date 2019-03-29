@@ -90,11 +90,14 @@ h1, h2, h3,h4, h5 {
 
 .hotels {
     width: 400px;
-    border: 1px solid #01939A;
     margin-left: 5px;
     display: inline-block;
-    border-radius: 5px;
     margin-top: 10px;
+}
+
+.border {
+    border: 1px solid #01939A;
+    border-radius: 5px;
 }
 
 #title{
@@ -153,13 +156,14 @@ a {
     text-decoration: none;
     color: white;
 }
-
+.height {
+    height: 30px;
+}
 .glavknop {
     width: 100%;
     font-family: 'Tenor Sans', sans-serif;
     font-size: 15px;
     color: #fafafa;
-    height: 30px;
     text-decoration: none;
     outline: none;
     border: none;

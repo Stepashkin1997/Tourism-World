@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 using TourismWorld.Models;
 
 namespace TourismWorld.Controllers
@@ -45,15 +44,23 @@ namespace TourismWorld.Controllers
                 Name = a.cities_name,
                 country = b.country_name
             }).Where(a => a.country.Contains(country));
-            //if (city.Count() <= 0)
-            //{
-            //    return Json(none);
-            //}
             return Json(city);
         }
-
         public ActionResult Wherebuy()
         {
+            return View();
+        }
+
+        public ActionResult Signin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Signin(string name,string password)
+        {
+            string a = name;
+            string b = password;
             return View();
         }
         public ActionResult Fortourists()

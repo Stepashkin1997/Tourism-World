@@ -33,10 +33,19 @@
           <Property Name="price" Type="int" />
           <Property Name="about" Type="text" />
         </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="Хранилище TourismModelContainer">
           <EntitySet Name="cities" EntityType="Self.cities" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="hotels" EntityType="Self.hotels" Schema="tourismweb" store:Type="Tables" />
+          <EntitySet Name="person" EntityType="Self.person" Schema="tourismweb" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -74,7 +83,16 @@
           <EntitySet Name="cities" EntityType="Self.city" />
           <EntitySet Name="countries" EntityType="Self.country" />
           <EntitySet Name="hotels" EntityType="Self.hotel" />
+          <EntitySet Name="people" EntityType="TourismModel.person" />
         </EntityContainer>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -109,6 +127,15 @@
                 <ScalarProperty Name="id_cities" ColumnName="id_cities" />
                 <ScalarProperty Name="img_src" ColumnName="img_src" />
                 <ScalarProperty Name="rank" ColumnName="rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="people">
+            <EntityTypeMapping TypeName="TourismModel.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
