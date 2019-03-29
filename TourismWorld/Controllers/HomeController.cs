@@ -9,6 +9,12 @@ namespace TourismWorld.Controllers
         private tourismwebEntities entities = new tourismwebEntities();
         public ActionResult Index(int? id)
         {
+            string user = null;
+            if (Request.Cookies["name"] != null)
+            {
+                user = Request.Cookies["name"].Value;
+                ViewBag.user = user;
+            }
             ViewBag.Country = entities.countries;
             if (id == null)
                 id = 1;
@@ -64,6 +70,7 @@ namespace TourismWorld.Controllers
             {
                 return View();
             }
+            AddCookies(name);
             return Redirect("/Home/Index/1");
         }
 
@@ -80,6 +87,7 @@ namespace TourismWorld.Controllers
             {
                 entities.people.Add(new person() { login = name, password = password });
                 entities.SaveChanges();
+                AddCookies(name);
                 return Redirect("/Home/Index/1");
             }
             return View();
@@ -88,6 +96,10 @@ namespace TourismWorld.Controllers
         public ActionResult Fortourists()
         {
             return View();
+        }
+        private void AddCookies(string name) {
+            Response.Cookies["name"].Value = name;
+            Response.Cookies["name"].Expires = System.DateTime.Now.AddHours(3);
         }
     }
 }
