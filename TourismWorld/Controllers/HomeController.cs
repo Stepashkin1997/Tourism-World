@@ -59,10 +59,32 @@ namespace TourismWorld.Controllers
         [HttpPost]
         public ActionResult Signin(string name,string password)
         {
-            string a = name;
-            string b = password;
+            var Person=entities.people.Where(a => a.login.Contains(name)).Where(a => a.password.Contains(password));
+            if (Person.Count() == 0)
+            {
+                return View();
+            }
+            return Redirect("/Home/Index/1");
+        }
+
+        public ActionResult Signup()
+        {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Signup(string name, string password)
+        {
+            var Person = entities.people.Where(a => a.login.Contains(name));
+            if (Person.Count() == 0)
+            {
+                entities.people.Add(new person() { login = name, password = password });
+                entities.SaveChanges();
+                return Redirect("/Home/Index/1");
+            }
+            return View();
+        }
+
         public ActionResult Fortourists()
         {
             return View();

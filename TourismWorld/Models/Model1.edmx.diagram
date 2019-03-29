@@ -6,9 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a86edecdf79a413893ec08d656a89e1c" Name="Diagram1">
         <EntityTypeShape EntityType="TourismModel.city" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourismModel.country" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourismModel.hotel" Width="1.5" PointX="1.125" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourismModel.person" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TourismModel.country" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourismModel.hotel" Width="1.5" PointX="6.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourismModel.person" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

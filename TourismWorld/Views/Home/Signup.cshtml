@@ -1,22 +1,19 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div style="position: relative; margin-left: auto; margin-right: auto; width: 700px;">
-    <h2 style="color:black;">Sign In</h2>
+    <h2 style="color:black;">Sign Up</h2>
     <div style="width:300px;margin-left: auto; margin-right: auto; padding: 10px 5px 10px 5px;" class="border">
-        <form action="/Home/Signin" method="post">
+        <form action="/Home/Signup" method="post">
             <input id="name" name="name" type="text" placeholder="Login" style="width:100%; border:none;" class="height" />
             <input id="password" name="password" type="password" placeholder="Password" style="width:100%; border:none;" class="height" />
-            <input id="Submit1" type="submit" value="Sign In" class="glavknop height" />
+            <input id="Submit1" type="submit" value="Sign Up" class="glavknop height" />
         </form>
         <br />
-        <a href="/Home/Signup">
-            <div style="color:black; width:100%; text-align:center;" class="border height">
-                Sign Up
-            </div>
-        </a>
     </div>
 </div>
+
 
 
