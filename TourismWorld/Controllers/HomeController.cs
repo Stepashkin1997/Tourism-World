@@ -9,12 +9,6 @@ namespace TourismWorld.Controllers
         private tourismwebEntities entities = new tourismwebEntities();
         public ActionResult Index(int? id)
         {
-            string user = null;
-            if (Request.Cookies["name"] != null)
-            {
-                user = Request.Cookies["name"].Value;
-                ViewBag.user = user;
-            }
             ViewBag.Country = entities.countries;
             if (id == null)
                 id = 1;
@@ -25,6 +19,31 @@ namespace TourismWorld.Controllers
                              select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src };
             return View();
         }
+        [HttpPost]
+        public ActionResult Index(string country, string city, int star, int? id)
+        {
+            ViewBag.Country = entities.countries;
+            if (id == null)
+                id = 1;
+            ViewBag.count = id;
+            var search= (from hotels in entities.hotels
+                         join cities in entities.cities on hotels.id_cities equals cities.id
+                         join countries in entities.countries on cities.id_country equals countries.id
+                         select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = cities.cities_name, country_name = countries.country_name, cimg_src = countries.img_src });
+            if (country!= "All") {
+                search = search.Where(a => a.country_name.Contains(country));
+            }
+            if (city != "All")
+            {
+                search = search.Where(a => a.cities_name.Contains(city));
+            }
+            if (star != -1)
+            {
+                search = search.Where(a => a.rank== star);
+            }
+            ViewBag.Hotels = search;
+            return View();
+        }
         public ActionResult Aboutcompany()
         {
             return View();
@@ -32,7 +51,7 @@ namespace TourismWorld.Controllers
 
         public ActionResult About(int id)
         {
-          var a = from hotels in entities.hotels
+            var a = from hotels in entities.hotels
                     join city in entities.cities on hotels.id_cities equals city.id
                     where hotels.id == id
                     join country in entities.countries on city.id_country equals country.id
@@ -63,9 +82,9 @@ namespace TourismWorld.Controllers
         }
 
         [HttpPost]
-        public ActionResult Signin(string name,string password)
+        public ActionResult Signin(string name, string password)
         {
-            var Person=entities.people.Where(a => a.login.Contains(name)).Where(a => a.password.Contains(password));
+            var Person = entities.people.Where(a => a.login.Contains(name) && a.password.Contains(password));
             if (Person.Count() == 0)
             {
                 return View();
@@ -97,7 +116,8 @@ namespace TourismWorld.Controllers
         {
             return View();
         }
-        private void AddCookies(string name) {
+        private void AddCookies(string name)
+        {
             Response.Cookies["name"].Value = name;
             Response.Cookies["name"].Expires = System.DateTime.Now.AddHours(3);
         }

@@ -5,18 +5,20 @@
 @section Scripts
 {
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/ajax.js"></script>
 }
 
 <div class="conteiner">
-    <form class="left">
+    <form class="left" action="/Home/Index" method="post">
         <div>
             <h3 style="text-align: center;">Hotel search</h3>
 
             <div>
                 <h5>Country</h5>
                 <select name="country" id="country">
+                    <option value="All">
+                        All
+                    </option>
                     @{
                         foreach (var name in ViewBag.Country)
                         {
@@ -29,16 +31,23 @@
             </div>
             <div>
                 <h5>City</h5>
-                <select name="city" id="city"></select>
+                <select name="city" id="city">
+                    <option value="All">
+                        All
+                    </option>
+                </select>
             </div>
 
             <div>
                 <h5>Stars</h5>
                 <select name="star">
                     @{
+                        <option value="-1">
+                            All
+                        </option>
                         for (int j = 0; j < 6; j++)
                         {
-                            <option>
+                            <option value="@j">
                                 @j
                             </option>
                         }
@@ -99,11 +108,5 @@
                 }
             </ul>
         </div>
-        @{
-            if (ViewBag.user!=null)
-            {
-                <div>@ViewBag.user </div>
-            }
-        }
     </div>
 </div>

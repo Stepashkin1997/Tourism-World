@@ -17,7 +17,8 @@
 function onAjaxSuccess(data) {
     $("#city").empty();
     data = jQuery.parseJSON(data);
+    $("#city").append("<option value='All'>All</option>");
     for (var i = 0; i < data.length; i++) {
-        $("#city").append("<option>" + data[i].Name + "</option>");
+        $("#city").append("<option value=" + data[i].Name+">" + data[i].Name + "</option>");
     }
-}
+1}

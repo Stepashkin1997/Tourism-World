@@ -19,7 +19,16 @@
             <li class="top"><a href="/Home/Fortourists">For tourists</a></li>
             <li class="top"><a href="/Home/Wherebuy">Where buy</a></li>
             <li class="top"><a href="/Home/Aboutcompany">About company</a></li>
-            <li class="top"><a href="/Home/Signin">Sign in</a></li>
+            @{
+                if (Request.Cookies["name"] != null)
+                {
+                    <li class="top"><a href="/Home/Index"> @Request.Cookies["name"].Value</a></li>
+                }
+                else
+                {
+                    <li class="top"><a href="/Home/Signin">Sign in</a></li>
+                }
+            }
         </ul>
         <form id="search">
             <input type="text" name="search" placeholder="Поиск по сайту" class="searchtext">
