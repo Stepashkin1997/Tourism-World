@@ -7,30 +7,34 @@ namespace TourismWorld.Controllers
     public class HomeController : Controller
     {
         private tourismwebEntities entities = new tourismwebEntities();
+        private IQueryable<Class1> search;
         public ActionResult Index(int? id)
         {
-            ViewBag.Country = entities.countries;
+            ViewBag.Countrys = entities.countries;
             if (id == null)
                 id = 1;
             ViewBag.count = id;
-            ViewBag.Hotels = from hotels in entities.hotels
-                             join city in entities.cities on hotels.id_cities equals city.id
-                             join country in entities.countries on city.id_country equals country.id
-                             select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src };
+            ViewBag.Method = "Index";
+            search = from hotels in entities.hotels
+                     join city in entities.cities on hotels.id_cities equals city.id
+                     join country in entities.countries on city.id_country equals country.id
+                     select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src };
+            ViewBag.Hotels = search;
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(string country, string city, int star, int? id)
+
+        public ActionResult Search(string country, string city, int? star, int? id)
         {
-            ViewBag.Country = entities.countries;
             if (id == null)
+            {
                 id = 1;
-            ViewBag.count = id;
-            var search= (from hotels in entities.hotels
-                         join cities in entities.cities on hotels.id_cities equals cities.id
-                         join countries in entities.countries on cities.id_country equals countries.id
-                         select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = cities.cities_name, country_name = countries.country_name, cimg_src = countries.img_src });
-            if (country!= "All") {
+            }
+            search = (from hotels in entities.hotels
+                      join cities in entities.cities on hotels.id_cities equals cities.id
+                      join countries in entities.countries on cities.id_country equals countries.id
+                      select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = cities.cities_name, country_name = countries.country_name, cimg_src = countries.img_src });
+            if (country != "All")
+            {
                 search = search.Where(a => a.country_name.Contains(country));
             }
             if (city != "All")
@@ -39,10 +43,17 @@ namespace TourismWorld.Controllers
             }
             if (star != -1)
             {
-                search = search.Where(a => a.rank== star);
+                search = search.Where(a => a.rank == star);
             }
+
+            ViewData["country"] = country;
+            ViewData["city"] = city;
+            ViewData["star"] = star;
             ViewBag.Hotels = search;
-            return View();
+            ViewBag.Countrys = entities.countries;
+            ViewBag.count = id;
+            ViewBag.Method = "Search";
+            return View("Index");
         }
         public ActionResult Aboutcompany()
         {
@@ -115,6 +126,13 @@ namespace TourismWorld.Controllers
         public ActionResult Fortourists()
         {
             return View();
+        }
+
+        public ActionResult Order()
+        {
+            if (Request.Cookies["name"] == null)
+                return Redirect("/Home/Signin");
+            return Redirect("/Home/Index/1");
         }
         private void AddCookies(string name)
         {

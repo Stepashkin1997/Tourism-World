@@ -9,7 +9,7 @@
 }
 
 <div class="conteiner">
-    <form class="left" action="/Home/Index" method="post">
+    <form class="left" action="/Home/Search" method="post">
         <div>
             <h3 style="text-align: center;">Hotel search</h3>
 
@@ -20,7 +20,7 @@
                         All
                     </option>
                     @{
-                        foreach (var name in ViewBag.Country)
+                        foreach (var name in ViewBag.Countrys)
                         {
                             <option value="@name.country_name">
                                 @name.country_name
@@ -69,7 +69,7 @@
                         continue;
                     }
                     <li class="hotels border">
-                        <form>
+                        <form method="post" action="/Home/Order">
                             <a href="/Home/About/@src.id">
                                 <img src="~/Content/img/Hotels/@src.img_src" class="imghoteks" />
                             </a>
@@ -94,15 +94,25 @@
         <div style="text-align: center;">
             <ul style=" padding: 0;">
                 @{
+                    string param = "";
+                    if (@ViewBag.Method== "Search")
+                    {
+                        param = "?";
+                        param += "country=" + ViewData["country"]+"&";
+                        param += "city=" + ViewData["city"] + "&";
+                        param += "star=" + ViewData["star"];
+                    }
+                }
+                @{
                     for (int k = 1; k <= Math.Ceiling((double)i / 4); k++)
                     {
                         if (@ViewBag.count == k)
                         {
-                            <li class="pages"><a href="/Home/Index/@k" style="color: red;" class="pagesli">@k</a></li>
+                            <li class="pages"><a href="/Home/@ViewBag.Method/@k@param" style="color: red;" class="pagesli">@k</a></li>
                         }
                         else
                         {
-                            <li class="pages"><a href="/Home/Index/@k" class="pagesli">@k</a></li>
+                            <li class="pages"><a href="/Home/@ViewBag.Method/@k@param" class="pagesli">@k</a></li>
                         }
                     }
                 }

@@ -21,4 +21,4 @@ function onAjaxSuccess(data) {
     for (var i = 0; i < data.length; i++) {
         $("#city").append("<option value=" + data[i].Name+">" + data[i].Name + "</option>");
     }
-1}
+}
