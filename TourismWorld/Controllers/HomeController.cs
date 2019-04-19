@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using TourismWorld.Models;
 
@@ -134,12 +135,26 @@ namespace TourismWorld.Controllers
                 return Redirect("/Home/Signin");
             else
             {
-                Session["order"] = name;
+                var list = (List<string>)Session["order"];
+                if (list == null)
+                {
+                    list = new List<string>();
+                }
+                list.Add(name);
+                Session["order"] = list;
                 return Redirect("/Home/Index/1");
             }
         }
         public ActionResult Shop()
         {
+            List<string> name = (List<string>)Session["order"];
+            if (name == null)
+            {
+                name = new List<string>();
+                name.Add("None");
+            }
+            var Hotel = entities.hotels.Where(a=>name.Contains(a.hotel_name));
+            ViewBag.Hotel = Hotel;
             return View();
         }
         private void AddCookies(string name)

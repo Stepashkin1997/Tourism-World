@@ -168,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\basket.png" />
     <Content Include="Content\img\countries\icobrazil.png" />
     <Content Include="Content\img\countries\icobritan.png" />
     <Content Include="Content\img\countries\icogreez.png" />
