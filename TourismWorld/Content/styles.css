@@ -63,23 +63,16 @@ html, body {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
-.find{
-	vertical-align: -3px;
-	margin-right: 10px;
-}
-
 .searchtext{
 	margin-left: 10px;
 	height: 100%; 
 	border: none;
 	outline: none;
 }
-#search{
-	background-color: white;
-	border-radius: 10px;
+#shop{
 	position: absolute;
-	right: 20px;
-	top: 15px;
+	right: 30px;
+	top: 10px;
 }
 h1, h2, h3,h4, h5 {
     font-family: 'Roboto Slab', serif;

@@ -128,11 +128,19 @@ namespace TourismWorld.Controllers
             return View();
         }
 
-        public ActionResult Order()
+        public ActionResult Order(string name)
         {
             if (Request.Cookies["name"] == null)
                 return Redirect("/Home/Signin");
-            return Redirect("/Home/Index/1");
+            else
+            {
+                Session["order"] = name;
+                return Redirect("/Home/Index/1");
+            }
+        }
+        public ActionResult Shop()
+        {
+            return View();
         }
         private void AddCookies(string name)
         {

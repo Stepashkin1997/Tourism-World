@@ -195,7 +195,7 @@
     <Content Include="Content\img\hotels\SheratonParcoRome.jpg" />
     <Content Include="Content\img\hotels\SutusCourt2.jpg" />
     <Content Include="Content\img\hotels\VisionHplusE.jpg" />
-    <Content Include="Content\img\Search.png" />
+    <Content Include="Content\img\shop.png" />
     <Content Include="Content\img\TourismWorld.png" />
     <Content Include="Content\styles.css" />
     <Content Include="destination.png" />
@@ -244,6 +244,7 @@
     <Content Include="Views\Home\Fortourists.cshtml" />
     <Content Include="Views\Home\Signin.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
