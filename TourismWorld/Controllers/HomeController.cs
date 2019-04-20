@@ -129,31 +129,31 @@ namespace TourismWorld.Controllers
             return View();
         }
 
-        public ActionResult Order(string name)
+        public ActionResult Order(int id)
         {
             if (Request.Cookies["name"] == null)
                 return Redirect("/Home/Signin");
             else
             {
-                var list = (List<string>)Session["order"];
+                var list = (List<int>)Session["order"];
                 if (list == null)
                 {
-                    list = new List<string>();
+                    list = new List<int>();
                 }
-                list.Add(name);
+                list.Add(id);
                 Session["order"] = list;
                 return Redirect("/Home/Index/1");
             }
         }
         public ActionResult Shop()
         {
-            List<string> name = (List<string>)Session["order"];
-            if (name == null)
+            List<int> id = (List<int>)Session["order"];
+            if (id == null)
             {
-                name = new List<string>();
-                name.Add("None");
+                id = new List<int>();
+                id.Add(-1);
             }
-            var Hotel = entities.hotels.Where(a=>name.Contains(a.hotel_name));
+            var Hotel = entities.hotels.Where(a=>id.Contains(a.id));
             ViewBag.Hotel = Hotel;
             return View();
         }
