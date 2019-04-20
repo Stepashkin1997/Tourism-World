@@ -29,5 +29,6 @@ namespace TourismWorld.Models
         public virtual DbSet<country> countries { get; set; }
         public virtual DbSet<hotel> hotels { get; set; }
         public virtual DbSet<person> people { get; set; }
+        public virtual DbSet<purchase> purchases { get; set; }
     }
 }

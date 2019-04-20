@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="TourismModel.country" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourismModel.hotel" Width="1.5" PointX="6.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourismModel.person" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourismModel.purchase" Width="1.5" PointX="8.625" PointY="1.125" />
+        <AssociationConnector Association="TourismModel.hotel_purchase" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

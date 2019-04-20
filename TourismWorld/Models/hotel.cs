@@ -14,6 +14,12 @@ namespace TourismWorld.Models
     
     public partial class hotel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public hotel()
+        {
+            this.purchases = new HashSet<purchase>();
+        }
+    
         public int id { get; set; }
         public string hotel_name { get; set; }
         public int id_cities { get; set; }
@@ -21,5 +27,8 @@ namespace TourismWorld.Models
         public Nullable<int> rank { get; set; }
         public Nullable<int> price { get; set; }
         public string about { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<purchase> purchases { get; set; }
     }
 }

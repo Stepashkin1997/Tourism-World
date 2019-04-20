@@ -41,11 +41,38 @@
           <Property Name="login" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
+        <EntityType Name="purchases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hotel" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="hotel_purchase">
+          <End Role="hotels" Type="Self.hotels" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="purchases" Type="Self.purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchases">
+              <PropertyRef Name="hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище TourismModelContainer">
           <EntitySet Name="cities" EntityType="Self.cities" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="hotels" EntityType="Self.hotels" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="person" EntityType="Self.person" Schema="tourismweb" store:Type="Tables" />
+          <EntitySet Name="purchases" EntityType="Self.purchases" Schema="tourismweb" store:Type="Tables" />
+          <AssociationSet Name="hotel_purchase" Association="Self.hotel_purchase">
+            <End Role="hotels" EntitySet="hotels" />
+            <End Role="purchases" EntitySet="purchases" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -78,12 +105,18 @@
           <Property Name="rank" Type="Int32" />
           <Property Name="price" Type="Int32" />
           <Property Name="about" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchases" Relationship="TourismModel.hotel_purchase" FromRole="hotel" ToRole="purchase" />
         </EntityType>
         <EntityContainer Name="tourismwebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cities" EntityType="Self.city" />
           <EntitySet Name="countries" EntityType="Self.country" />
           <EntitySet Name="hotels" EntityType="Self.hotel" />
           <EntitySet Name="people" EntityType="TourismModel.person" />
+          <EntitySet Name="purchases" EntityType="TourismModel.purchase" />
+          <AssociationSet Name="hotel_purchase" Association="TourismModel.hotel_purchase">
+            <End Role="hotel" EntitySet="hotels" />
+            <End Role="purchase" EntitySet="purchases" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="person">
           <Key>
@@ -93,6 +126,29 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="purchase">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hotel" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="hotel1" Relationship="TourismModel.hotel_purchase" FromRole="purchase" ToRole="hotel" />
+        </EntityType>
+        <Association Name="hotel_purchase">
+          <End Type="TourismModel.hotel" Role="hotel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TourismModel.purchase" Role="purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -135,6 +191,15 @@
               <MappingFragment StoreEntitySet="person">
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchases">
+            <EntityTypeMapping TypeName="TourismModel.purchase">
+              <MappingFragment StoreEntitySet="purchases">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="hotel" ColumnName="hotel" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
