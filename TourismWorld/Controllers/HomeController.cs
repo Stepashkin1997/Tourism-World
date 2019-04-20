@@ -157,6 +157,15 @@ namespace TourismWorld.Controllers
             ViewBag.Hotel = Hotel;
             return View();
         }
+        [HttpPost]
+        public ActionResult Shop(int id)
+        {
+            entities.purchases.Add(new purchase() { hotel = id, date = System.DateTime.Now });
+            entities.SaveChanges();
+            List<int> ids = (List<int>)Session["order"];
+            ids.Remove(id);
+            return Redirect("/Home/Shop"); 
+        }
         private void AddCookies(string name)
         {
             Response.Cookies["name"].Value = name;

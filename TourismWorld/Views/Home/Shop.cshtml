@@ -10,7 +10,7 @@
             foreach (var hotel in ViewBag.Hotel)
             {
                 <li class="hotels border">
-                    <form action="/" method="post">
+                    <form action="/Home/Shop" method="post">
                         <a href="/Home/About/1">
                             <img src="~/Content/img/Hotels/@hotel.img_src" class="imghoteks" />
                         </a>
@@ -18,8 +18,9 @@
                             @hotel.hotel_name
                         </div>
                         <div class="infospis">
-                            <img src="~/Content/img/basket.png"/>
+                            <img src="~/Content/img/basket.png" />
                         </div>
+                        <input type="hidden" name="id" value="@hotel.id">
                         <input type="submit" name="Confirm" value="Confirm" class="glavknop height">
                     </form>
                 </li>
