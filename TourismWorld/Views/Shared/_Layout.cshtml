@@ -22,7 +22,7 @@
             @{
                 if (Request.Cookies["name"] != null)
                 {
-                    <li class="top"><a href="/Home/Index"> @Request.Cookies["name"].Value</a></li>
+                    <li class="top"><a href="/Home/Person/@Request.Cookies["name"].Value"> @Request.Cookies["name"].Value</a></li>
                 }
                 else
                 {

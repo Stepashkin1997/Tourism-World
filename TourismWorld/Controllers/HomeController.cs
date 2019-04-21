@@ -153,7 +153,7 @@ namespace TourismWorld.Controllers
                 id = new List<int>();
                 id.Add(-1);
             }
-            var Hotel = entities.hotels.Where(a=>id.Contains(a.id));
+            var Hotel = entities.hotels.Where(a => id.Contains(a.id));
             ViewBag.Hotel = Hotel;
             return View();
         }
@@ -164,7 +164,11 @@ namespace TourismWorld.Controllers
             entities.SaveChanges();
             List<int> ids = (List<int>)Session["order"];
             ids.Remove(id);
-            return Redirect("/Home/Shop"); 
+            return Redirect("/Home/Shop");
+        }
+        public ActionResult Person(string id)
+        {
+            return View(entities);
         }
         private void AddCookies(string name)
         {
