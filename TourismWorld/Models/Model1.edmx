@@ -48,6 +48,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="hotel" Type="int" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="id_person" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="hotel_purchase">
           <End Role="hotels" Type="Self.hotels" Multiplicity="1">
@@ -63,6 +64,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="person_purchase">
+          <End Role="person" Type="Self.person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="purchases" Type="Self.purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchases">
+              <PropertyRef Name="id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище TourismModelContainer">
           <EntitySet Name="cities" EntityType="Self.cities" Schema="tourismweb" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="tourismweb" store:Type="Tables" />
@@ -71,6 +86,10 @@
           <EntitySet Name="purchases" EntityType="Self.purchases" Schema="tourismweb" store:Type="Tables" />
           <AssociationSet Name="hotel_purchase" Association="Self.hotel_purchase">
             <End Role="hotels" EntitySet="hotels" />
+            <End Role="purchases" EntitySet="purchases" />
+          </AssociationSet>
+          <AssociationSet Name="person_purchase" Association="Self.person_purchase">
+            <End Role="person" EntitySet="person" />
             <End Role="purchases" EntitySet="purchases" />
           </AssociationSet>
         </EntityContainer>
@@ -117,6 +136,10 @@
             <End Role="hotel" EntitySet="hotels" />
             <End Role="purchase" EntitySet="purchases" />
           </AssociationSet>
+          <AssociationSet Name="person_purchase" Association="TourismModel.person_purchase">
+            <End Role="person" EntitySet="people" />
+            <End Role="purchase" EntitySet="purchases" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="person">
           <Key>
@@ -125,6 +148,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchases" Relationship="TourismModel.person_purchase" FromRole="person" ToRole="purchase" />
         </EntityType>
         <EntityType Name="purchase">
           <Key>
@@ -134,6 +158,8 @@
           <Property Name="hotel" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="hotel1" Relationship="TourismModel.hotel_purchase" FromRole="purchase" ToRole="hotel" />
+          <Property Name="id_person" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="person" Relationship="TourismModel.person_purchase" FromRole="purchase" ToRole="person" />
         </EntityType>
         <Association Name="hotel_purchase">
           <End Type="TourismModel.hotel" Role="hotel" Multiplicity="1">
@@ -146,6 +172,20 @@
             </Principal>
             <Dependent Role="purchase">
               <PropertyRef Name="hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_purchase">
+          <End Type="TourismModel.person" Role="person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TourismModel.purchase" Role="purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="id_person" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,6 +238,7 @@
           <EntitySetMapping Name="purchases">
             <EntityTypeMapping TypeName="TourismModel.purchase">
               <MappingFragment StoreEntitySet="purchases">
+                <ScalarProperty Name="id_person" ColumnName="id_person" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="hotel" ColumnName="hotel" />
                 <ScalarProperty Name="id" ColumnName="id" />

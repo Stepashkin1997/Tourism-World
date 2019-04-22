@@ -14,8 +14,17 @@ namespace TourismWorld.Models
     
     public partial class person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public person()
+        {
+            this.purchases = new HashSet<purchase>();
+        }
+    
         public int id { get; set; }
         public string login { get; set; }
         public string password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<purchase> purchases { get; set; }
     }
 }

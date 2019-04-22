@@ -17,7 +17,9 @@ namespace TourismWorld.Models
         public int id { get; set; }
         public int hotel { get; set; }
         public System.DateTime date { get; set; }
+        public int id_person { get; set; }
     
         public virtual hotel hotel1 { get; set; }
+        public virtual person person { get; set; }
     }
 }

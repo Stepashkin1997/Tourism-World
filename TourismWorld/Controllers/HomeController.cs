@@ -160,7 +160,9 @@ namespace TourismWorld.Controllers
         [HttpPost]
         public ActionResult Shop(int id)
         {
-            entities.purchases.Add(new purchase() { hotel = id, date = System.DateTime.Now });
+            var idperson = Request.Cookies["name"].Value;
+            int person = entities.people.Where(a => a.login.Contains(idperson)).Select(b => b.id).FirstOrDefault();
+            entities.purchases.Add(new purchase() { hotel = id, date = System.DateTime.Now, id_person = person });
             entities.SaveChanges();
             List<int> ids = (List<int>)Session["order"];
             ids.Remove(id);
