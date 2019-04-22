@@ -8,7 +8,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
-    var pur = Model.purchases.Select(a => new { a.hotel1.id, a.date, a.hotel1.hotel_name, a.hotel1.img_src });
+    var idperson = Request.Cookies["name"].Value;
+    var pur = Model.purchases.Where(b=>b.person.login.Contains(idperson)).Select(a => new { a.hotel1.id, a.date, a.hotel1.hotel_name, a.hotel1.img_src});
 }
 
 <div style="position: relative; margin-left: auto; margin-right: auto; width: 500px;">
@@ -25,7 +26,7 @@
                         @purchase.hotel_name
                     </div>
                     <div class="infospis">
-                        @purchase.date.ToShortDateString()
+                        Date of order: @purchase.date.ToShortDateString()
                     </div>
                 </li>
             }

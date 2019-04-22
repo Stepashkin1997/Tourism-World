@@ -16,7 +16,9 @@
                             @hotel.hotel_name
                         </div>
                         <div class="infospis">
-                            <img src="~/Content/img/basket.png" />
+                            <a href="/Home/Delete/@hotel.id">
+                                <img src="~/Content/img/basket.png" style="height:18px; width:18px; " />
+                            </a>
                         </div>
                         <input type="hidden" name="id" value="@hotel.id">
                         <input type="submit" name="Confirm" value="Confirm" class="glavknop height">

@@ -147,15 +147,20 @@ namespace TourismWorld.Controllers
         }
         public ActionResult Shop()
         {
-            List<int> id = (List<int>)Session["order"];
-            if (id == null)
+            List<int> ids = (List<int>)Session["order"];
+            if (ids == null)
             {
-                id = new List<int>();
-                id.Add(-1);
+                ids = new List<int>();
             }
-            var Hotel = entities.hotels.Where(a => id.Contains(a.id));
+            var Hotel = entities.hotels.Where(a => ids.Contains(a.id));
             ViewBag.Hotel = Hotel;
             return View();
+        }
+        public ActionResult Delete(int id)
+        {
+            List<int> ids = (List<int>)Session["order"];
+            ids.Remove(id);
+            return Redirect("/Home/Shop");
         }
         [HttpPost]
         public ActionResult Shop(int id)
