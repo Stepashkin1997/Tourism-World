@@ -14,5 +14,6 @@ namespace TourismWorld.Models
         public string cities_name { get; set; }
         public string country_name { get; set; }
         public string cimg_src { get; set; }
+        public string about { get; set; }
     }
 }

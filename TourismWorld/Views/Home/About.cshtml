@@ -15,7 +15,10 @@
     </div>
     <div>
         <p>
-            <ul>
+            <ul style="font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #01939A;">
                 <li>@a.hotel_name</li>
                 <li>Stars: @a.rank</li>
                 <li>Country: @a.country_name</li>
@@ -24,22 +27,7 @@
         </p>
     </div>
     <div>
-        <h3 style="color:black;">Main amenities</h3>
-        <ul>
-            <li>256 smoke-free guestrooms</li>
-            <li>2 restaurants</li>
-            <li>Outdoor pool</li>
-            <li>Rooftop terrace</li>
-            <li>Breakfast available</li>
-            <li>Free area shuttle</li>
-            <li>Fitness center</li>
-            <li>Self parking</li>
-            <li>Spa services</li>
-            <li>Business center</li>
-            <li>Airport shuttle</li>
-            <li>24-hour front desk</li>
-            <li>Free WiFi </li>
-         </ul>
+        @(new HtmlString(@a.about))
     </div>
 </div>
 
