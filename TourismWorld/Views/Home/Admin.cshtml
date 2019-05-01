@@ -1,0 +1,40 @@
+﻿@model tourismwebEntities
+@using System.Data.Entity
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web.Mvc;
+@using TourismWorld.Models;
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var pur = Model.people.Select(a => new { a.login, a.password, a.rules });
+}
+
+<table>
+    <tr>
+        <th>Login</th>
+        <th>Password</th>
+        <th>Rules</th>
+    </tr>
+    @{
+        foreach (var item in pur)
+        {
+            <tr>
+                <td>@item.login</td>
+                <td>@item.password</td>
+                @{
+                    if (item.rules)
+                    {
+                        <td>Admin</td>
+                    }
+                    else
+                    {
+                        <td>User</td>
+                    }
+                }
+            </tr>
+        }
+    }
+</table>

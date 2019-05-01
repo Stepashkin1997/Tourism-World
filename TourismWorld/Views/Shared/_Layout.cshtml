@@ -22,7 +22,12 @@
             @{
                 if (Request.Cookies["name"] != null)
                 {
-                    <li class="top"><a href="/Home/Person/@Request.Cookies["name"].Value"> @Request.Cookies["name"].Value</a></li>
+                    string method = "Person";
+                    if (Request.Cookies["rule"] != null)
+                    {
+                        method = "Admin";
+                    }
+                    <li class="top"><a href="/Home/@method/@Request.Cookies["name"].Value"> @Request.Cookies["name"].Value</a></li>
                 }
                 else
                 {
@@ -30,9 +35,14 @@
                 }
             }
         </ul>
-        <a href="/Home/Shop" id="shop">
-            <img src="~/Content/img/shop.png"/>
-        </a>
+        @{
+            if (Request.Cookies["rule"] == null)
+            {
+                <a href="/Home/Shop" id="shop">
+                    <img src="~/Content/img/shop.png" />
+                </a>
+            }
+        }
     </div>
     <div style="position: relative; margin-top: 65px; min-height:100%; min-width: 1280px; ">
         <div style="padding-bottom: 60px;">
