@@ -40,6 +40,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="rules" Type="bool" Nullable="false" />
         </EntityType>
         <EntityType Name="purchases">
           <Key>
@@ -193,6 +194,7 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="purchases" Relationship="TourismModel.person_purchase" FromRole="person" ToRole="purchase" />
+          <Property Name="rules" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="purchase">
           <Key>
@@ -297,6 +299,7 @@
           <EntitySetMapping Name="people">
             <EntityTypeMapping TypeName="TourismModel.person">
               <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="rules" ColumnName="rules" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="id" ColumnName="id" />
