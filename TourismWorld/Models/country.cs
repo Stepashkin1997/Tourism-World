@@ -14,8 +14,17 @@ namespace TourismWorld.Models
     
     public partial class country
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public country()
+        {
+            this.cities = new HashSet<city>();
+        }
+    
         public int id { get; set; }
         public string country_name { get; set; }
         public string img_src { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<city> cities { get; set; }
     }
 }

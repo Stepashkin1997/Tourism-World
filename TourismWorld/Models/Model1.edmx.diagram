@@ -5,13 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a86edecdf79a413893ec08d656a89e1c" Name="Diagram1">
-        <EntityTypeShape EntityType="TourismModel.city" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourismModel.city" Width="1.5" PointX="0.875" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourismModel.country" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourismModel.hotel" Width="1.5" PointX="3.875" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TourismModel.person" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourismModel.purchase" Width="1.5" PointX="6.75" PointY="0.625" />
+        <EntityTypeShape EntityType="TourismModel.purchase" Width="1.5" PointX="6.5" PointY="0.75" />
         <AssociationConnector Association="TourismModel.hotel_purchase" />
         <AssociationConnector Association="TourismModel.person_purchase" />
+        <AssociationConnector Association="TourismModel.hotels_cities" />
+        <AssociationConnector Association="TourismModel.cities_country1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
