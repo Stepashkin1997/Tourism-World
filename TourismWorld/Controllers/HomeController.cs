@@ -67,7 +67,7 @@ namespace TourismWorld.Controllers
                     join city in entities.cities on hotels.id_cities equals city.id
                     where hotels.id == id
                     join country in entities.countries on city.id_country equals country.id
-                    select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src, about = hotels.about };
+                    select new Class1 { id = hotels.id, hotel_name = hotels.hotel_name, img_src = hotels.img_src, rank = hotels.rank, cities_name = city.cities_name, country_name = country.country_name, cimg_src = country.img_src, about=hotels.about };
             ViewBag.Hotels = a.FirstOrDefault();
             ViewBag.id = id;
             return View();
@@ -96,24 +96,13 @@ namespace TourismWorld.Controllers
         [HttpPost]
         public ActionResult Signin(string name, string password)
         {
-            var Person = entities.people.Where(a => a.login.Contains(name) && a.password.Contains(password)).FirstOrDefault();
-            if (Person == null)
+            var Person = entities.people.Where(a => a.login.Contains(name) && a.password.Contains(password));
+            if (Person.Count() == 0)
             {
                 return View();
             }
-            if (!Person.rules)
-            {
-                AddCookies(name);
-                return Redirect("/Home/Index/1");
-            }
-            else
-            {
-                Response.Cookies["name"].Value = name;
-                Response.Cookies["rule"].Value = Person.rules.ToString();
-                Response.Cookies["name"].Expires = System.DateTime.Now.AddHours(1);
-                Response.Cookies["rule"].Expires = System.DateTime.Now.AddHours(1);
-                return Redirect("/Home/Index/1");
-            }
+            AddCookies(name);
+            return Redirect("/Home/Index/1");
         }
 
         public ActionResult Signup()
@@ -185,10 +174,6 @@ namespace TourismWorld.Controllers
             return Redirect("/Home/Shop");
         }
         public ActionResult Person(string id)
-        {
-            return View(entities);
-        }
-        public ActionResult Admin()
         {
             return View(entities);
         }
